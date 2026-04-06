@@ -1,96 +1,96 @@
-# UI Automation Testing Framework
+# UI 自动化测试框架
 
-Enterprise-grade UI automation testing framework built with **Playwright** + **Python** + **Pytest**.
+基于 **Playwright** + **Python** + **Pytest** 构建的企业级 UI 自动化测试框架。
 
-## Overview
+## 概述
 
-A modern, scalable, and maintainable UI automation testing solution designed for enterprise applications. This framework follows industry best practices including Page Object Model (POM) pattern, layered architecture, and data-driven testing.
+这是一个现代化、可扩展、易维护的 UI 自动化测试解决方案，专为企业级应用设计。框架遵循行业最佳实践，包括页面对象模型（POM）模式、分层架构和数据驱动测试。
 
-## Tech Stack
+## 技术栈
 
-| Category | Technology |
-|----------|------------|
-| Framework | Playwright 1.40 |
-| Language | Python 3.9+ |
-| Test Runner | Pytest 7.2+ |
-| Reporting | Pytest HTML |
-| Data Validation | Pydantic 2.5 |
-| Configuration | PyYAML |
+| 类别 | 技术 |
+|------|------|
+| 测试框架 | Playwright 1.40 |
+| 编程语言 | Python 3.9+ |
+| 测试运行器 | Pytest 7.2+ |
+| 测试报告 | Pytest HTML |
+| 数据验证 | Pydantic 2.5 |
+| 配置文件 | PyYAML |
 
-## Architecture
+## 项目架构
 
 ```
 UI_Auto_demo/
-├── core/                       # Core Layer
-│   ├── base_page.py           # BasePage - Page Object Model base class
-│   ├── logger.py              # Logging utilities
-│   ├── custom_assertions.py   # Custom assertion methods
-│   └── data_models.py         # Pydantic data models
-├── pages/                      # Page Object Layer
-│   ├── login_page.py          # Login page object
-│   ├── dashboard_page.py      # Dashboard page object
-│   └── components/            # Reusable UI components
-├── tests/                      # Test Cases Layer
-│   ├── conftest.py           # Pytest fixtures and configuration
+├── core/                       # 核心层
+│   ├── base_page.py           # BasePage - 页面对象模型基类
+│   ├── logger.py              # 日志工具
+│   ├── custom_assertions.py  # 自定义断言方法
+│   └── data_models.py        # Pydantic 数据模型
+├── pages/                      # 页面对象层
+│   ├── login_page.py          # 登录页面对象
+│   ├── dashboard_page.py      # 仪表盘页面对象
+│   └── components/            # 可复用组件
+├── tests/                      # 测试用例层
+│   ├── conftest.py            # Pytest Fixtures 配置
 │   └── smoke/
-│       └── test_login.py     # Login functionality tests
-├── data/                       # Data Layer
-│   ├── users.json            # User test data
-│   ├── config.yaml           # Environment configurations
-│   └── demo_app.html         # Demo application for testing
-├── helpers/                    # Helper Utilities
-│   └── data_generator.py     # Test data generator
-├── reports/                    # Test Reports
-├── screenshots/               # Failure screenshots
-├── traces/                     # Playwright traces
-├── pytest.ini                 # Pytest configuration
-├── requirements.txt           # Python dependencies
-└── .env                      # Environment variables
+│       └── test_login.py      # 登录功能测试
+├── data/                       # 数据层
+│   ├── users.json             # 用户测试数据
+│   ├── config.yaml            # 环境配置文件
+│   └── demo_app.html          # 测试用 Demo 应用
+├── helpers/                    # 辅助工具
+│   └── data_generator.py      # 测试数据生成器
+├── reports/                    # 测试报告目录
+├── screenshots/               # 失败截图目录
+├── traces/                     # Playwright trace 文件
+├── pytest.ini                 # Pytest 配置
+├── requirements.txt           # Python 依赖
+└── .env                      # 环境变量
 ```
 
-## Features
+## 核心特性
 
-### Core Principles
+### 设计原则
 
-- **Robustness**: Intelligent waiting mechanisms, no flaky tests
-- **Maintainability**: Clean code architecture with POM pattern
-- **Scalability**: Modular design for easy expansion
+- **健壮性**：智能等待机制，避免不稳定测试
+- **可维护性**：清晰的代码架构，基于 POM 模式
+- **可扩展性**：模块化设计，便于功能扩展
 
-### Key Features
+### 主要功能
 
-- Page Object Model (POM) architecture
-- Data-driven testing with JSON/YAML
-- Multi-environment support (staging, production, development, demo)
-- Automatic screenshot capture on failure
-- Playwright trace viewer support
-- Comprehensive HTML test reports
-- Custom assertions library
-- Test data generation utilities
+- 页面对象模型（POM）架构
+- 基于 JSON/YAML 的数据驱动测试
+- 多环境支持（staging、production、development、demo）
+- 失败时自动截图
+- Playwright trace 查看器支持
+- 完整的 HTML 测试报告
+- 自定义断言库
+- 测试数据生成工具
 
-## Installation
+## 安装指南
 
-### Prerequisites
+### 环境要求
 
 - Python 3.9+
 - pip
 
-### Setup
+### 安装步骤
 
 ```bash
-# Clone the repository
+# 克隆仓库
 git clone https://github.com/cylDemo/UI_Auto_demo.git
 cd UI_Auto_demo
 
-# Install dependencies
+# 安装依赖
 pip install -r requirements.txt
 
-# Install Playwright browsers
+# 安装 Playwright 浏览器
 playwright install chromium
 ```
 
-## Configuration
+## 配置说明
 
-### Environment Variables (.env)
+### 环境变量 (.env)
 
 ```env
 BASE_URL=https://staging.example.com
@@ -102,71 +102,71 @@ PARALLEL_WORKERS=4
 ENV=demo
 ```
 
-### Environment Config (data/config.yaml)
+### 环境配置 (data/config.yaml)
 
-Supported environments: `staging`, `production`, `development`, `demo`
+支持的环境：`staging`、`production`、`development`、`demo`
 
-## Usage
+## 使用方法
 
-### Run All Tests
+### 运行所有测试
 
 ```bash
 python -m pytest tests/smoke/test_login.py -v
 ```
 
-### Run by Marker
+### 按标记运行
 
 ```bash
-# Smoke tests only
+# 仅运行冒烟测试
 python -m pytest -m smoke -v
 
-# Regression tests only
+# 仅运行回归测试
 python -m pytest -m regression -v
 
-# By priority
+# 按优先级运行
 python -m pytest -m P0 -v
 ```
 
-### Generate HTML Report
+### 生成 HTML 报告
 
 ```bash
 python -m pytest --html=reports/pytest-report.html --self-contained-html
 ```
 
-### Parallel Execution
+### 并行执行
 
 ```bash
 python -m pytest -n 4
 ```
 
-## Test Cases
+## 测试用例
 
-### Login Tests (Smoke)
+### 登录测试（冒烟）
 
-| Test Case | Priority | Description |
-|-----------|----------|-------------|
-| `test_login_success` | P0 | Verify successful login with valid credentials |
-| `test_login_page_elements` | P0 | Verify all login page elements are visible |
-| `test_login_button_state` | P0 | Verify login button is enabled |
+| 测试用例 | 优先级 | 描述 |
+|---------|--------|------|
+| `test_login_success` | P0 | 使用有效凭证登录成功 |
+| `test_login_page_elements` | P0 | 验证登录页面所有元素可见 |
+| `test_login_button_state` | P0 | 验证登录按钮处于启用状态 |
 
-### Login Tests (Regression)
+### 登录测试（回归）
 
-| Test Case | Priority | Description |
-|-----------|----------|-------------|
-| `test_login_failed_with_invalid_password` | P1 | Verify error message for invalid password |
-| `test_login_failed_with_nonexistent_user` | P1 | Verify error message for non-existent user |
-| `test_login_empty_fields` | P2 | Verify validation for empty username/password |
+| 测试用例 | 优先级 | 描述 |
+|---------|--------|------|
+| `test_login_failed_with_invalid_password` | P1 | 验证无效密码错误提示 |
+| `test_login_failed_with_nonexistent_user` | P1 | 验证不存在用户错误提示 |
+| `test_login_empty_fields` | P2 | 验证空用户名/密码校验 |
 
-### Dashboard Tests
+### 仪表盘测试
 
-| Test Case | Priority | Description |
-|-----------|----------|-------------|
-| `test_dashboard_elements_visible` | P2 | Verify dashboard elements after login |
-| `test_logout` | P2 | Verify logout functionality |
+| 测试用例 | 优先级 | 描述 |
+|---------|--------|------|
+| `test_dashboard_elements_visible` | P2 | 验证登录后仪表盘元素可见 |
+| `test_logout` | P2 | 验证退出登录功能 |
 
-## Test Data
+## 测试数据
 
-### Valid User Credentials
+### 有效用户凭证
 
 ```json
 {
@@ -175,40 +175,40 @@ python -m pytest -n 4
 }
 ```
 
-### Demo Application
+### Demo 应用
 
-A demo login application is included at `data/demo_app.html` for testing purposes.
+框架包含一个位于 `data/demo_app.html` 的演示登录应用，用于测试目的。
 
-## Project Structure Details
+## 分层架构详解
 
-### Core Layer (`core/`)
+### 核心层 (`core/`)
 
-- **base_page.py**: Base class for all Page Objects providing common methods
-- **logger.py**: Centralized logging configuration
-- **custom_assertions.py**: Reusable assertion methods
-- **data_models.py**: Pydantic models for data validation
+- **base_page.py**: 所有页面对象的基类，提供通用方法
+- **logger.py**: 集中化日志配置
+- **custom_assertions.py**: 可复用的断言方法
+- **data_models.py**: Pydantic 数据验证模型
 
-### Page Object Layer (`pages/`)
+### 页面对象层 (`pages/`)
 
-- **login_page.py**: Login page locators and actions
-- **dashboard_page.py**: Dashboard page locators and actions
+- **login_page.py**: 登录页面定位器和操作方法
+- **dashboard_page.py**: 仪表盘页面定位器和操作方法
 
-### Test Layer (`tests/`)
+### 测试层 (`tests/`)
 
-- **conftest.py**: Pytest fixtures, hooks, and configuration
-- **test_login.py**: Login functionality test cases
+- **conftest.py**: Pytest fixtures、钩子和配置
+- **test_login.py**: 登录功能测试用例
 
-### Data Layer (`data/`)
+### 数据层 (`data/`)
 
-- **users.json**: User credentials and test data
-- **config.yaml**: Environment-specific configurations
+- **users.json**: 用户凭证和测试数据
+- **config.yaml**: 环境特定配置
 
-## CI/CD Integration
+## CI/CD 集成
 
-### GitHub Actions Example
+### GitHub Actions 示例
 
 ```yaml
-name: UI Automation Tests
+name: UI 自动化测试
 on: [push, pull_request]
 jobs:
   test:
@@ -218,44 +218,44 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install dependencies
+      - name: 安装依赖
         run: |
           pip install -r requirements.txt
           playwright install chromium
-      - name: Run tests
+      - name: 运行测试
         run: pytest --workers=4
 ```
 
-## Best Practices
+## 最佳实践
 
-1. **Always use Page Object Model** - Never write `page.locator()` in test files
-2. **No hardcoded data** - Use JSON/YAML files for test data
-3. **Smart waits** - Use Playwright's auto-wait instead of `time.sleep()`
-4. **Descriptive naming** - Use clear, descriptive test names
-5. **Atomic tests** - Each test should be independent
-6. **Failure screenshots** - Enable automatic screenshot capture
+1. **始终使用页面对象模型** - 测试文件中禁止直接写 `page.locator()`
+2. **禁止硬编码数据** - 使用 JSON/YAML 文件管理测试数据
+3. **智能等待** - 使用 Playwright 自动等待替代 `time.sleep()`
+4. **命名规范** - 使用清晰描述性的测试名称
+5. **原子性测试** - 每个测试应相互独立
+6. **失败截图** - 启用自动截图捕获
 
-## Quality Metrics
+## 质量指标
 
-| Metric | Target |
-|--------|--------|
-| Pass Rate | >= 98% |
-| Execution Time | < 15 min (full suite) |
-| Flaky Rate | < 2% |
-| Code Coverage | >= 80% |
+| 指标 | 目标 |
+|------|------|
+| 通过率 | >= 98% |
+| 执行时间 | < 15 分钟（完整套件）|
+| 不稳定率 | < 2% |
+| 代码覆盖率 | >= 80% |
 
-## Contributing
+## 贡献指南
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+1. Fork 本仓库
+2. 创建功能分支
+3. 提交更改
+4. 推送到分支
+5. 创建 Pull Request
 
-## License
+## 许可证
 
-MIT License
+MIT 许可证
 
-## Support
+## 技术支持
 
-For questions or issues, please open an issue on GitHub.
+如有问题，请在 GitHub 上提交 Issue。
