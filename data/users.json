@@ -1,0 +1,32 @@
+{
+  "valid": {
+    "username": "testuser@example.com",
+    "password": "Test123456",
+    "remember": false
+  },
+  "invalid_password": {
+    "username": "testuser@example.com",
+    "password": "wrongpassword",
+    "remember": false
+  },
+  "invalid_username": {
+    "username": "nonexistent@example.com",
+    "password": "Test123456",
+    "remember": false
+  },
+  "empty_username": {
+    "username": "",
+    "password": "Test123456",
+    "remember": false
+  },
+  "empty_password": {
+    "username": "testuser@example.com",
+    "password": "",
+    "remember": false
+  },
+  "special_characters": {
+    "username": "user<>&\"'@example.com",
+    "password": "Test@123",
+    "remember": false
+  }
+}

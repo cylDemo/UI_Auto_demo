@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Login App</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; justify-content: center; align-items: center; }
+        .container { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); width: 400px; }
+        .logo { text-align: center; margin-bottom: 30px; font-size: 28px; font-weight: bold; color: #667eea; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #333; font-weight: 500; }
+        input { width: 100%; padding: 12px; border: 2px solid #e1e1e1; border-radius: 6px; font-size: 14px; transition: border-color 0.3s; }
+        input:focus { outline: none; border-color: #667eea; }
+        button { width: 100%; padding: 14px; background: #667eea; color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
+        button:hover { background: #5568d3; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .error { color: #e74c3c; font-size: 14px; margin-top: 8px; display: none; }
+        .error.show { display: block; }
+        .remember-me { display: flex; align-items: center; margin-bottom: 20px; }
+        .remember-me input { width: auto; margin-right: 8px; }
+        .forgot-password { text-align: center; margin-top: 20px; }
+        .forgot-password a { color: #667eea; text-decoration: none; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container" id="login-page">
+        <div class="logo" data-testid="logo">Demo App</div>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" data-testid="username" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" data-testid="password" placeholder="Enter password">
+            </div>
+            <div class="remember-me">
+                <input type="checkbox" id="remember" data-testid="remember-me">
+                <label for="remember">Remember me</label>
+            </div>
+            <button type="submit" data-testid="login-button" id="login-btn">Login</button>
+            <div class="error" data-testid="error-message" id="error-msg"></div>
+        </form>
+        <div class="forgot-password">
+            <a href="#" data-testid="forgot-password">Forgot Password?</a>
+        </div>
+    </div>
+
+    <div class="container" id="dashboard-page" style="display: none;">
+        <div class="logo" data-testid="dashboard-title">Dashboard</div>
+        <h2 data-testid="welcome-message" style="text-align: center; margin: 20px 0;">Welcome, <span id="user-display"></span>!</h2>
+        <div style="margin-top: 30px;">
+            <button data-testid="profile-link" style="margin-bottom: 10px;">Profile Settings</button>
+            <button data-testid="settings-link" style="margin-bottom: 10px;">Account Settings</button>
+            <button data-testid="logout-button" style="background: #e74c3c;">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        const validUser = { username: 'testuser@example.com', password: 'Test123456' };
+        const loginForm = document.getElementById('login-form');
+        const loginPage = document.getElementById('login-page');
+        const dashboardPage = document.getElementById('dashboard-page');
+        const errorMsg = document.getElementById('error-msg');
+        const userDisplay = document.getElementById('user-display');
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (!username) {
+                showError('Username is required');
+                return;
+            }
+            if (!password) {
+                showError('Password is required');
+                return;
+            }
+            if (username === validUser.username && password === validUser.password) {
+                hideError();
+                loginPage.style.display = 'none';
+                dashboardPage.style.display = 'block';
+                userDisplay.textContent = username;
+            } else {
+                showError('Invalid credentials');
+            }
+        });
+
+        function showError(msg) {
+            errorMsg.textContent = msg;
+            errorMsg.classList.add('show');
+        }
+
+        function hideError() {
+            errorMsg.classList.remove('show');
+        }
+
+        document.querySelector('[data-testid="logout-button"]').addEventListener('click', function() {
+            dashboardPage.style.display = 'none';
+            loginPage.style.display = 'block';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        });
+
+        document.querySelector('[data-testid="forgot-password"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Password reset link sent to your email!');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+staging:
+  base_url: "https://staging.example.com"
+  api_url: "https://staging-api.example.com"
+  timeout: 30000
+  headless: true
+
+production:
+  base_url: "https://www.example.com"
+  api_url: "https://api.example.com"
+  timeout: 30000
+  headless: false
+
+development:
+  base_url: "http://localhost:3000"
+  api_url: "http://localhost:8080"
+  timeout: 30000
+  headless: false
+
+demo:
+  base_url: "file:///e:/Trae_project/UI_Auto_demo/data"
+  api_url: "https://demo-api.example.com"
+  timeout: 30000
+  headless: false
