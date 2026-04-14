@@ -20,7 +20,7 @@
 ## 项目架构
 
 ```
-UI_Auto_demo/
+Web_UI_Auto/
 ├── core/                       # 核心层
 │   ├── base_page.py           # BasePage - 页面对象模型基类
 │   ├── logger.py              # 日志工具
@@ -78,7 +78,7 @@ UI_Auto_demo/
 
 ```bash
 # 克隆仓库
-git clone https://github.com/cylDemo/UI_Auto_demo.git
+git clone https://github.com/cylDemo/Web_UI_Auto.git
 cd UI_Auto_demo
 
 # 安装依赖
